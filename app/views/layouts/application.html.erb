@@ -1,0 +1,36 @@
+<% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: "alert alert-info" %>
+  <% end %>
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Nproject</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<header class='header'>
+NProject
+</header>
+<div class='home'>  <%#=render 'home'%>
+<%=link_to 'HOME',:controller=>'users',:action=>'signin'%>
+<%=link_to 'SIGN IN',:controller=>'users',:action=>'signin'%>
+<%=link_to 'SIGN UP',:controller=>'users',:action=>'new'%>
+<%=link_to 'REGISTER',:controller=>'members',:action=>'new'%>
+<%#raise session[:user].inspect%>
+<%if !session[:user].blank?%>
+<p>User:<%=session[:user]%></p>
+<p><%=link_to 'Logout',:controller=>'users',:action=>'signout'%></p>
+<%end%>
+</div>
+<div>
+<%= yield %>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<table border='1px'>
+  <tr>
+    <th>S.No</th>
+    <th>Name</th>
+    <th>Father Name</th>
+    <th>DOB</th>
+    <th>Qualification</th>
+    <th>Position</th>
+    <th>Photo</th>
+    <th>Email</th>
+    <th>Phone 1</th>
+    <th>Phone 2</th>
+<th colspan=2>Function
+</th>
+
+  </tr>
+<% i=0 %>
+<% @members.each do |m| %>
+  <tr>
+    <td><%= i=i+1 %> </td>
+    <td><%= m.name %> </td>
+    <td><%= m.father_name %> </td>
+        <%  a= m.dob.to_s %>
+    <td><%= a.to_date %> </td>
+    <td><%= m.qualification %> </td>
+    <td><%= m.position %> </td>
+    <td><%= m.photo_url %> </td>
+    <td><%= m.email_id %> </td>
+    <td><%= m.phone_no %> </td>
+    <td><%= m.whatsApp_no %></td>
+
+    <td><%=link_to 'edit',:id=>m.id,:action=>"edit" %></td>
+    <td><%= link_to 'Destroy',{:action =>"destroy",:id=>m.id},:confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= link_to 'create' ,:action=>'new' %>

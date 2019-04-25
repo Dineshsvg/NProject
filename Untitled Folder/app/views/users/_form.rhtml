@@ -1,0 +1,38 @@
+
+
+  <%= form_for(@user) do |f| %>
+<div>
+<%= f.label :name %>
+<%= f.text_field :user_name %>
+</div>
+<div>
+<%= f.label :password %>
+    <%= f.text_field :user_password, :type=>'password', :required=>true %>
+<%#= f.password_field :user_password, :onfocus=>'check()' %>
+</div>
+<div>
+<%= f.label :repassword %>
+<%#= f.password_field :user_repassword %>
+<%= f.text_field :user_repassword, :type=>'password', :required=>true, :onchange=>'check()' %>
+</div>
+<div>
+<%= f.submit "Create account" %>
+<%= link_to 'back',:action=>'list'%>
+</div> 
+<% end %>
+<script type="text/javascript">
+function check()
+  {
+    psw=document.getElementById('user_user_password').value
+    repsw=document.getElementById('user_user_repassword').value
+  if(psw!=repsw)
+   {
+    alert("enter repassword correctly")
+    document.getElementById('user_user_repassword').value=''
+    document.getElementById('user_user_repassword').focus
+   }
+       
+  }
+</script>
+
+

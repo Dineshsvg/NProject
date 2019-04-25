@@ -1,0 +1,16 @@
+
+<table>
+	<tr>
+		<th>name</th>
+		<th>psw</th>
+		<th>rpsw</th>
+	</tr>
+	<tr>
+		<td><%= @user.user_name%></td>
+		<td><%= @user.user_password%></td>
+                <td><%= @user.user_repassword%></td>
+	</tr>
+	
+</table>
+<%= link_to 'back' ,:action=>'list' %>
+<%= link_to 'edit' ,:action=>'edit' %>

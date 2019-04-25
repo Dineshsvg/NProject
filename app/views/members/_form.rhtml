@@ -1,0 +1,74 @@
+<%= form_for(@member,:multipart => 'true') do |f| %>
+<div>
+<%= f.label :Name %>
+<%= f.text_field :name %>
+</div>
+<div>
+<%= f.label :FatherName%>
+<%= f.text_field :father_name %>
+</div>
+<div>
+<%= f.label :DOB %>
+<%#= f.date_select :dob,:start_year => 1980 %>
+  
+<%= f.text_field :dob,:onchange =>'cal_age()' %>
+
+<%= text_field :age, :memeber%>
+
+</div>
+<div>
+<%= f.label :Qualification %>
+    <%= f.text_field :qualification %>
+</div>
+<div>
+<%= f.label :Position %>
+    <%= f.text_field :position %>
+</div>
+<div>
+<%= f.label :Photo %>
+    <% if @member.photo_url==nil %>
+      <%= f.file_field :photo_url %>
+<% else %>    
+<%= @member.photo_url %>
+      <%= f.file_field :photo_url %>
+<% end %>
+</div>
+<div>
+<%= f.label :Email %>
+    <%= f.text_field :email_id %>
+</div>
+<div>
+<%= f.label :Phone1 %>
+    <%= f.text_field :phone_no %>
+</div>
+<div>
+<%= f.label :Phone2 %>
+    <%= f.text_field :whatsApp_no %>
+</div>
+
+<div>
+<%= f.submit "Create Member" %>
+<%= link_to 'back',:action=>'list'%>
+</div> 
+<% end %>
+
+<script type="text/javascript">
+$('age_memeber').hide();
+ 
+/*function cal_age()
+{
+dateString=document.getElementById('member_dob').value
+var birthday = +new Date(dateString);
+age=(Date.now() - birthday) / (31557600000)
+alert(age)
+}*/
+
+
+        $(function () {
+            $('#member_dob').datepicker({
+                dateFormat: "dd/MM/yy",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>

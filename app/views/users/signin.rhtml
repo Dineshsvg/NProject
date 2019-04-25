@@ -1,0 +1,86 @@
+<div id='aa'>
+<table align = 'center'>
+<% form_tag :controller=>'members',:action => 'list' do %>
+<tr>
+<th>Username</th>
+<td><%= text_field 'user','name', :placeholder => 'Enter username',:required=>true %></td>
+</tr>
+<tr>
+<th>Password</th>
+<td><%= text_field 'user','password', :type => 'password',:placeholder => 'Enter password',:required=>true %></td>
+</tr>
+<tr>
+<td><%#= submit_tag ('Login')%>
+<%= submit_tag 'login' , :onclick => "return submitfunction();" %>
+</td>
+<% end %>
+</tr>
+</table>
+</div>
+<script type="text/javascript">
+function submitfunction() 
+{
+// alert('<%=raw @arru1 %>')
+    arruname= '<%=raw @arru1 %>'
+    arrpsw='<%=raw @arrp1 %>'
+    uarr1=arruname.replace(/[&\/\\#+()$~%."[:*?<>{}]/g,'')
+    uarr2=uarr1.replace(/ user_name/g, '')
+    uarr3=uarr2.replace(/]/g, '')
+    uarr4=uarr3.replace(/\s+/g,'')
+    uarr5=uarr4.replace(/User/g, '')
+
+     parr1=arrpsw.replace(/[&\/\\#+()$~%."[:*?<>{}]/g,'')
+     parr2=parr1.replace(/ user_password/g, '')
+     parr3=parr2.replace(/]/g, '')
+     parr4=parr3.replace(/\s+/g,'')
+     parr5=parr4.replace(/User/g, '')
+
+     u=document.getElementById('user_name').value
+     p=document.getElementById('user_password').value
+
+      an=[]
+     an=uarr5.split(',')
+
+     apsw=[]
+     apsw=parr5.split(',')
+          
+     valuname=an.indexOf(u)
+     valuname1=an[valuname]
+
+     valpsw=apsw[valuname]
+     valpsw1=apsw.indexOf(p,valuname)
+     
+     if(u!="")
+     { 
+      if(an.indexOf(u)>-1) 
+      {
+        if(valuname==valpsw1) 
+       	{
+// var pars =$F('user_name')
+var pars ="user=" +document.getElementById('user_name').value
+	 new Ajax.Loader('aa','/members/list', {parameters:pars });
+// window.location='/members/list'
+// var params=valuname
+
+       	}
+       	else
+       	{
+       		window.alert("enter username and password correctly")
+          //user_name.value=''
+          user_password.value=''
+       	}
+      }
+       else
+       {
+        alert("enter valid username")
+        user_name.value=''
+        user_password.value=''
+       }
+     }
+     else
+     {
+      	alert("enter username and password")
+     }  
+     return false
+}
+</script>

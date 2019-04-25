@@ -1,0 +1,82 @@
+<table align = 'center'>
+<%# form_tag :action => 'list' do %>
+<tr>
+<th>Username</th>
+<td><%= text_field 'user','name', :placeholder => 'Enter username',:required=>true,:onchange=>'check_user()'%></td>
+</tr>
+<tr>
+<th>Password</th>
+<td><%= text_field 'user','password', :type => 'password',:placeholder => 'Enter password',:required=>true,:onchange=>'check_psw()' %></td>
+</tr>
+<tr>
+<td><%#= submit_tag ('Login')%>
+<button onclick="return submitfunction()">submit</button>
+</td>
+<%# end %>
+</tr>
+</table>
+<script type="text/javascript">
+function check_user()
+{
+a=document.getElementById('user_name').value
+    arruname1= '<%=raw @arru1 %>'
+    uarr1=arruname1.replace(/[&\/\\#+()$~%."[:*?<>{}]/g,'')
+    uarr2=uarr1.replace(/ user_name/g, '')
+    uarr3=uarr2.replace(/]/g, '')
+    uarr4=uarr3.replace(/\s+/g,'')
+    uarr5=uarr4.replace(/User/g, '')
+    var un=document.getElementById('user_name').value
+    var reuname=[]      
+    reuname=uarr5.split(',')
+     valun=reuname.indexOf(un)
+if(valun ==-1)
+{
+alert("User name does not exist")
+document.getElementById('user_name').value=''
+user_name.focus()
+
+
+}
+
+}
+function check_psw()
+{
+    arruname= '<%=raw @arru1 %>'
+    arrpsw='<%=raw @arrp1 %>'
+    uarr1=arruname1.replace(/[&\/\\#+()$~%."[:*?<>{}]/g,'')
+    uarr2=uarr1.replace(/ user_name/g, '')
+    uarr3=uarr2.replace(/]/g, '')
+    uarr4=uarr3.replace(/\s+/g,'')
+    uarr5=uarr4.replace(/User/g, '')
+
+     parr1=arrpsw.replace(/[&\/\\#+()$~%."[:*?<>{}]/g,'')
+     parr2=parr1.replace(/ user_password/g, '')
+     parr3=parr2.replace(/]/g, '')
+     parr4=parr3.replace(/\s+/g,'')
+     parr5=parr4.replace(/User/g, '')
+
+     u=document.getElementById('user_name').value
+     p=document.getElementById('user_password').value
+
+      an=[]
+     an=uarr5.split(',')
+
+     apsw=[]
+     apsw=parr5.split(',')
+
+     valuname=an.indexOf(u)
+     valuname1=an[valuname]
+
+     valpsw=apsw[valuname]
+     valpsw1=apsw.indexOf(p,valuname)
+if(valuname!=valpsw1) 
+{
+alert('please enter correct password')
+document.getElementById('user_password').value=''
+document.getElementById('user_password').focus()
+}
+return false     
+}
+
+
+</script>
